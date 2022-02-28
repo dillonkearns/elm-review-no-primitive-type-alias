@@ -18,6 +18,8 @@ type alias JustAPlainInt = Int
 
 type alias JustAPlainBool = Bool
 
+type alias JustAPlainFloat = Float
+
 type alias JustAPlainUnit = ()
 
 type NotAPlainString = NotAPlainString String
@@ -30,6 +32,7 @@ type alias RecordAliasesAreOkay = { first : String, last : String }
                         [ error "JustAPlainString" "String"
                         , error "JustAPlainInt" "Int"
                         , error "JustAPlainBool" "Bool"
+                        , error "JustAPlainFloat" "Float"
                         , error "JustAPlainUnit" "()"
                         ]
         ]

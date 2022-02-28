@@ -83,6 +83,9 @@ declarationVisitor node =
                         ( [], "Bool" ) ->
                             [ errorMessage ]
 
+                        ( [], "Float" ) ->
+                            [ errorMessage ]
+
                         _ ->
                             []
 
