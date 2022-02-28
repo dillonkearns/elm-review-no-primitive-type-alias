@@ -14,12 +14,15 @@ all =
 
 type alias JustAPlainString = String
 
+type alias JustAPlainInt = Int
+
 type NotAPlainString = NotAPlainString String
 
 """
                     |> Review.Test.run rule
                     |> Review.Test.expectErrors
                         [ error "JustAPlainString" "String"
+                        , error "JustAPlainInt" "Int"
                         ]
         ]
 
@@ -32,5 +35,5 @@ error aliasName aliasedType =
             [ "Type aliases to simple primitives like String or Int can be misleading because you could give them a name, like `type alias UserId = String`, but then use that name anywhere a String is used. That means you could have a home address that is mistakenly labeled as a `UserId`, or an actual user ID string that is labelled as `String`."
             , "Consider using a custom type, like `type UserId = UserId String` instead so the compiler can give you more useful feedback."
             ]
-        , under = "type alias JustAPlainString = " ++ aliasedType
+        , under = "type alias " ++ aliasName ++ " = " ++ aliasedType
         }
