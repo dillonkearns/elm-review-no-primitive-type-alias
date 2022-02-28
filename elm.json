@@ -1,7 +1,7 @@
 {
     "type": "package",
     "name": "dillonkearns/elm-review-no-primitive-type-alias",
-    "summary": "",
+    "summary": "A Rule to prevent type aliases of simple primitive types like String or Int.",
     "license": "BSD-3-Clause",
     "version": "1.0.0",
     "exposed-modules": [
