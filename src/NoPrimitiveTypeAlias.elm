@@ -60,10 +60,6 @@ declarationVisitor node =
         Declaration.AliasDeclaration aliasDeclaration ->
             case Node.value aliasDeclaration.typeAnnotation of
                 TypeAnnotation.Typed a b ->
-                    let
-                        _ =
-                            Debug.log "thing" { a = Node.value a, b = List.map Node.value b }
-                    in
                     case Node.value a of
                         ( [], "String" ) ->
                             [ Rule.error
@@ -79,11 +75,7 @@ declarationVisitor node =
                         _ ->
                             []
 
-                thing ->
-                    let
-                        _ =
-                            Debug.log "thing" thing
-                    in
+                _ ->
                     []
 
         _ ->
