@@ -49,7 +49,6 @@ elm-review --template dillonkearns/elm-review-no-primitive-type-alias/example --
 rule : Rule
 rule =
     Rule.newModuleRuleSchema "NoPrimitiveTypeAlias" ()
-        -- Add your visitors
         |> Rule.withSimpleDeclarationVisitor declarationVisitor
         |> Rule.fromModuleRuleSchema
 
