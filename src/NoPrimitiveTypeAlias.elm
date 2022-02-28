@@ -13,7 +13,8 @@ import Review.ModuleNameLookupTable as ModuleNameLookupTable exposing (ModuleNam
 import Review.Rule as Rule exposing (Error, Rule)
 
 
-{-| Reports... REPLACEME
+{-| Reports type aliases to single-value primitive types, like `type alias UserId = String`. Does not report errors for
+type aliases of Record, List, Dict, Maybe, or Result types (i.e. compound primitives).
 
     config =
         [ NoPrimitiveTypeAlias.rule
@@ -22,20 +23,33 @@ import Review.Rule as Rule exposing (Error, Rule)
 
 ## Fail
 
-    a =
-        "REPLACEME example to replace"
+    type alias UserId =
+        String
 
 
 ## Success
 
-    a =
-        "REPLACEME example to replace"
+    type alias User =
+        { first : String, last : String }
 
 
 ## When (not) to enable this rule
 
-This rule is useful when REPLACEME.
-This rule is not useful when REPLACEME.
+Type Aliases that point to simple primitive types can give a false sense of security because they these type aliases
+provide a label that you could use in unexpected ways without getting compiler feedback. For example, if you have
+a type `type alias UserId = String`, then you could
+
+1.  Use the type alias `UserId` on a value which actually represents a shipping address, or
+2.  Use the type annotation `String` on a value which is actually a `UserId`
+3.  If you have another `type alias ShippingAddress = String`, then you could even label a user ID with the type `ShippingAddress`
+4.  You could mix up positional arguments with types like `ShippingAddress` and `UserId`, but since they're just `String`s as far as the compiler is concerned, there is no error to let you know.
+
+All of these cases could provide you with more helpful compiler feedback if you use custom types like `type UserId = UserId String` instead.
+
+See a more in-depth discussion in [the Elm Radio episode about Primitive Obsession](https://elm-radio.com/episode/primitive-obsession).
+
+This rule is useful when you want to make sure you can trust types to represent Custom Types that will give you helpful compiler feedback as described above.
+This rule is not useful when you have low-level workarounds where you are choosing to use simple primitive type aliases, or if you disagree with this advice choose to use that style as your personal preference.
 
 
 ## Try it out
@@ -95,7 +109,7 @@ isPrimitive lookupTable annotation =
         TypeAnnotation.Unit ->
             True
 
-        TypeAnnotation.Typed a b ->
+        TypeAnnotation.Typed a _ ->
             case ( ModuleNameLookupTable.moduleNameFor lookupTable a |> Maybe.withDefault [], Node.value a |> Tuple.second ) of
                 ( [ "Basics" ], "Int" ) ->
                     True
