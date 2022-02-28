@@ -14,6 +14,8 @@ all =
 
 type alias JustAPlainString = String
 
+type alias JustAPlainChar = Char
+
 type alias JustAPlainInt = Int
 
 type alias JustAPlainBool = Bool
@@ -32,6 +34,7 @@ type alias RecordAliasesAreOkay = { first : String, last : String }
                     |> Review.Test.run rule
                     |> Review.Test.expectErrors
                         [ error "JustAPlainString" "String"
+                        , error "JustAPlainChar" "Char"
                         , error "JustAPlainInt" "Int"
                         , error "JustAPlainBasicsInt" "Basics.Int"
                         , error "JustAPlainBool" "Bool"

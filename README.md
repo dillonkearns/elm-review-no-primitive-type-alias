@@ -1,6 +1,6 @@
 # elm-review-no-primitive-type-alias
 
-Provides [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rules to point out type aliases to simple primitive types (`String`, `Bool`, `Int`, `Float`, `()`).
+Provides [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-review/latest/) rules to point out type aliases to simple primitive types (`String`, `Char`, `Bool`, `Int`, `Float`, `()`).
 
 ## Rationale
 

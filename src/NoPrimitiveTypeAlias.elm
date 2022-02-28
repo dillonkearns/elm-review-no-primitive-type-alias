@@ -110,6 +110,9 @@ isPrimitive lookupTable annotation =
                 ( [ "String" ], "String" ) ->
                     True
 
+                ( [ "Char" ], "Char" ) ->
+                    True
+
                 _ ->
                     False
 
