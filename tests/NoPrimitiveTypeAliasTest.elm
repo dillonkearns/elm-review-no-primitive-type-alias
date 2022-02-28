@@ -16,6 +16,8 @@ type alias JustAPlainString = String
 
 type alias JustAPlainInt = Int
 
+type alias JustAPlainUnit = ()
+
 type NotAPlainString = NotAPlainString String
 
 """
@@ -23,6 +25,7 @@ type NotAPlainString = NotAPlainString String
                     |> Review.Test.expectErrors
                         [ error "JustAPlainString" "String"
                         , error "JustAPlainInt" "Int"
+                        , error "JustAPlainUnit" "()"
                         ]
         ]
 
