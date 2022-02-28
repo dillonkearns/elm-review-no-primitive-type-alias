@@ -80,6 +80,9 @@ declarationVisitor node =
                         ( [], "Int" ) ->
                             [ errorMessage ]
 
+                        ( [], "Bool" ) ->
+                            [ errorMessage ]
+
                         _ ->
                             []
 
