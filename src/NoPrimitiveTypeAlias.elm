@@ -96,17 +96,17 @@ isPrimitive lookupTable annotation =
             True
 
         TypeAnnotation.Typed a b ->
-            case Node.value a of
-                ( [], "String" ) ->
+            case ( ModuleNameLookupTable.moduleNameFor lookupTable a |> Maybe.withDefault [], Node.value a |> Tuple.second ) of
+                ( [ "Basics" ], "Int" ) ->
                     True
 
-                ( [], "Int" ) ->
+                ( [ "Basics" ], "Float" ) ->
                     True
 
-                ( [], "Bool" ) ->
+                ( [ "Basics" ], "Bool" ) ->
                     True
 
-                ( [], "Float" ) ->
+                ( [ "String" ], "String" ) ->
                     True
 
                 _ ->

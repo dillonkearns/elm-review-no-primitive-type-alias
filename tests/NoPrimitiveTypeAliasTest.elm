@@ -22,6 +22,8 @@ type alias JustAPlainFloat = Float
 
 type alias JustAPlainUnit = ()
 
+type alias JustAPlainBasicsInt = Basics.Int
+
 type NotAPlainString = NotAPlainString String
 
 type alias RecordAliasesAreOkay = { first : String, last : String }
@@ -31,6 +33,7 @@ type alias RecordAliasesAreOkay = { first : String, last : String }
                     |> Review.Test.expectErrors
                         [ error "JustAPlainString" "String"
                         , error "JustAPlainInt" "Int"
+                        , error "JustAPlainBasicsInt" "Basics.Int"
                         , error "JustAPlainBool" "Bool"
                         , error "JustAPlainFloat" "Float"
                         , error "JustAPlainUnit" "()"
