@@ -4,8 +4,8 @@ Provides [`elm-review`](https://package.elm-lang.org/packages/jfmengels/elm-revi
 
 ## Rationale
 
-Type Aliases that point to simple primitive types can give a false sense of security because they these type aliases
-provide a label that you could use in unexpected ways without getting compiler feedback. For example, if you have two type definitions
+Type Aliases that point to simple primitive types can give a false sense of security because these type aliases
+provide a label that you could use in unintended ways without getting compiler feedback. For example, if you have two type definitions
 
 ```elm
 type alias UserId = String
